@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 [Resolve]
-DNS={{ preferred_dns }}
+DNS={{ preferred_dns | join(' ') }}
 FallbackDNS={{ fallback_dns }}
 {% for domain in search_domains %}
 Domains={{ domain }}
