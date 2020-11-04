@@ -58,3 +58,24 @@
     state: started
     enabled: yes
   notify: use resolved
+
+- name: systemd-resolved | Stat /etc/resolv.conf
+  stat:
+    path: /etc/resolv.conf
+  register: etc_resolv_conf
+
+- name: systemd-resolved | Remove /etc/resolv.conf if symbolic link
+  become: yes
+  file:
+    path: /etc/resolv.conf
+    state: absent
+  when: etc_resolv_conf.stat.islnk is defined and etc_resolv_conf.stat.islnk == False
+
+- name: systemd-resolved | Create symlink /etc/resolv.conf
+  tags:
+    - resolvconf
+  file:
+    src: ../run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+  when: etc_resolv_conf.stat.islnk is undefined or etc_resolv_conf.stat.islnk == False
