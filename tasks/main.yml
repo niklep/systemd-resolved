@@ -57,14 +57,14 @@
     name: systemd-resolved
     state: started
     enabled: yes
-  notify: use resolved
+#  notify: use resolved
 
 - name: systemd-resolved | Stat /etc/resolv.conf
   stat:
     path: /etc/resolv.conf
   register: etc_resolv_conf
 
-- name: systemd-resolved | Remove /etc/resolv.conf if symbolic link
+- name: systemd-resolved | Remove /etc/resolv.conf if not symbolic link
   become: yes
   file:
     path: /etc/resolv.conf
