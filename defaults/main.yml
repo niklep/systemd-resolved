@@ -1,4 +1,4 @@
 ---
-preferred_dns: 1.1.1.1
-fallback_dns: 1.0.0.1
+preferred_dns: 193.138.89.66 91.198.71.205
+fallback_dns: 8.8.8.8 8.8.4.4
 search_domains: []

@@ -5,6 +5,7 @@ FallbackDNS={{ fallback_dns }}
 {% for domain in search_domains %}
 Domains={{ domain }}
 {% endfor %}
-DNSSEC=no
-LLMNR=resolve
-MulticastDNS=resolve
+#DNSSEC=no
+#LLMNR=yes
+Cache=yes
+#DNSStubListener=udp

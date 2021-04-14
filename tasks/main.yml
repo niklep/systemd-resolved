@@ -27,6 +27,15 @@
     dest: /etc/systemd/resolved.conf
   notify: restart resolved
 
+- name: symlink /etc/resolv.conf
+  ansible.builtin.file:
+    src: /run/systemd/resolve/resolv.conf
+    dest: /etc/resolv.conf
+#    owner: foo
+#    group: foo
+    state: link
+    force: yes
+
 - name: systemd-resolved | check resolvectl
   stat:
     path: /usr/bin/resolvectl
